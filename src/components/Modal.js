@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import "./Modal.css";
-
 import noteContext from "../context/notes/NoteContext";
 
 const Modal = (props) => {
@@ -8,29 +7,22 @@ const Modal = (props) => {
   const context = useContext(noteContext);
   const { editNote } = context;
 
-  const onChange=(e) =>{
-    esetNote({...enote, [e.target.name]: e.target.value})
-  }
+  const onChange = (e) => {
+    esetNote({ ...enote, [e.target.name]: e.target.value });
+  };
 
   const handleUpdate = () => {
-    // alert("Update button clicked!");
     editNote(enote.id, enote.etitle, enote.edescription, enote.etag);
-    console.log(enote)
-    console.log("updataing the note")
+    props.showAlert("Note updated successfully!", "success");
     setIsOpen(false);
   };
 
   return (
     <div>
-      {/* <button onClick={openModal}>Open Modal</button> */}
-
       {isOpen && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h3>Edit Note</h3>
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
             <form className="container my-3">
               <div className="my-3">
                 <label htmlFor="title">Title</label>
@@ -42,7 +34,7 @@ const Modal = (props) => {
                   placeholder="Enter Title"
                   value={enote.etitle}
                   onChange={onChange}
-                />  
+                />
               </div>
               <div className="my-3">
                 <label htmlFor="description">Description</label>
@@ -56,7 +48,6 @@ const Modal = (props) => {
                   onChange={onChange}
                 />
               </div>
-
               <div className="my-3">
                 <label htmlFor="etag">Tag</label>
                 <input
@@ -69,8 +60,15 @@ const Modal = (props) => {
                   onChange={onChange}
                 />
               </div>
+              <div className="button-group">
+                <button className="btn btn-primary" onClick={handleUpdate}>
+                  Update
+                </button>
+                <button className="btn btn-secondary" onClick={closeModal}>
+                  Close
+                </button>
+              </div>
             </form>
-            <button onClick={handleUpdate}>Update</button>
           </div>
         </div>
       )}

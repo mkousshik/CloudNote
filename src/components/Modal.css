@@ -1,15 +1,15 @@
 /* The Modal (background) */
 .modal {
-    display: block; /* Visible when open */
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
     animation-name: fadeIn;
     animation-duration: 0.4s;
 }
@@ -17,13 +17,14 @@
 /* Modal Content/Box */
 .modal-content {
     background-color: #ffffff;
-    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Reduced width */
+    max-width: 500px; /* Optional: maximum width */
     border-radius: 8px;
     animation-name: slideIn;
     animation-duration: 0.4s;
+    position: relative;
 }
 
 /* The Close Button */
@@ -79,4 +80,30 @@ h2 {
     text-align: center;
     margin-top: 50px;
     color: #333;
+}
+
+/* Button Group Styling */
+.button-group {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.button-group .btn {
+    flex: none;
+}
+
+.button-group .btn-primary {
+    background-color: #007BFF;
+    color: white;
+}
+
+.button-group .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.button-group .btn:hover {
+    opacity: 0.8;
 }

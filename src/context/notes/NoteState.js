@@ -12,8 +12,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY3YWE5YTE2Yjg4NzQyNjQ4NDg3YzM0In0sImlhdCI6MTcxOTMxNDg3Mn0.CdDpQ3kop15rSnc3JPG27zl4D7x7h-C7yVRo-tOsAJQ",
+        "auth-token": localStorage.getItem('token')
       },
       
     });
@@ -29,8 +28,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY3YWE5YTE2Yjg4NzQyNjQ4NDg3YzM0In0sImlhdCI6MTcxOTMxNDg3Mn0.CdDpQ3kop15rSnc3JPG27zl4D7x7h-C7yVRo-tOsAJQ",
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
@@ -41,15 +39,14 @@ const NoteState = (props) => {
   // delete a note
   const deleteNote = async (id) => {
     //API Call
-    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+    await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
         // "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY3YWE5YTE2Yjg4NzQyNjQ4NDg3YzM0In0sImlhdCI6MTcxOTMxNDg3Mn0.CdDpQ3kop15rSnc3JPG27zl4D7x7h-C7yVRo-tOsAJQ",
+        "auth-token": localStorage.getItem('token')
       },
     });
-    console.log(response)
+    // console.log(response)
 
     // client side
     const newNote = notes.filter((note) => {
@@ -65,14 +62,23 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY3YWE5YTE2Yjg4NzQyNjQ4NDg3YzM0In0sImlhdCI6MTcxOTMxNDg3Mn0.CdDpQ3kop15rSnc3JPG27zl4D7x7h-C7yVRo-tOsAJQ",
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
-    console.log(response)
+    // console.log(response)
 
     //logic to edit in client side
+    if (response.ok) {
+      // Logic to edit on client side
+      // Assuming you have a state variable called notes that holds the list of notes
+      setNotes(prevNotes =>
+        prevNotes.map(note => 
+          note._id === id ? { ...note, title, description, tag } : note
+        )
+      );
+    }
+    
   };
 
   return (

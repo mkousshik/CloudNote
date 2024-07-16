@@ -14,9 +14,9 @@ const Noteitem = (props) => {
           <p className="card-text">{note.description}</p>
           <p className="card-text">{note.tag}</p>
           <div style={{display: "flex", justifyContent: "flex-end"}}>
-            <i className="fa-solid fa-copy mx-1"></i>
-            <i className="fa-solid fa-pen-to-square mx-2" onClick={()=>{updateNote(note)}}></i>
-            <i className="fa-solid fa-trash-can mx-1" onClick={()=>{deleteNote(note._id)}}></i>
+            {/* <i className="fa-solid fa-copy mx-1"></i> */}
+            <i className="fa-solid fa-pen-to-square mx-2" onClick={()=>{updateNote(note)} }></i>
+            <i className="fa-solid fa-trash-can mx-1" onClick={()=>{deleteNote(note._id); props.showAlert("Note deleted successfully!", "success");}}></i>
           </div>
         </div>
       </div>
