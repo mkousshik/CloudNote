@@ -30,7 +30,7 @@ const NoteState = (props) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('token')
       },
-      body: JSON.stringify({title, description, tag})
+      body: JSON.stringify({title, description, tag })
     });
     const note = await response.json(); 
     return setNotes(notes.concat(note));
@@ -55,7 +55,7 @@ const NoteState = (props) => {
     return setNotes(newNote);
   };
 
-  //edit a note
+  //add a note
   const editNote = async (id, title, description, tag) => {
     // API Call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
@@ -81,8 +81,39 @@ const NoteState = (props) => {
     
   };
 
+  // add a bg
+  const noteColor = async (id, bg_color) => {
+    try {
+      // API Call
+      const response = await fetch(`${host}/api/notes/updatebg/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('token')
+        },
+        body: JSON.stringify({ id, bg_color })
+      });
+  
+      console.log({id, bg_color});
+      if (!response.ok) {
+        throw new Error('Failed to update background color');
+      }
+  
+      // Logic to edit on client side assuming you have 'setNotes' function
+      setNotes(prevNotes =>
+        prevNotes.map(note =>
+          note._id === id ? { ...note, bg_color } : note
+        )
+      );
+    } catch (error) {
+      console.error('Error updating background color:', error);
+      // Handle error as needed, e.g., show a notification to the user
+    }
+  };
+  
+
   return (
-    <NoteContext.Provider value={{ notes, getNotes, addNote, deleteNote, editNote}}>
+    <NoteContext.Provider value={{ notes, getNotes, addNote, deleteNote, editNote, noteColor}}>
       {props.children}
     </NoteContext.Provider>
   );

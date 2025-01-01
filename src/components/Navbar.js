@@ -40,3 +40,93 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+// import React, { useState } from "react";
+
+// const Navbar = (props) => {
+//   const [showForm, setShowForm] = useState(false);
+//   const [note, setNote] = useState({
+//     title: "",
+//     description: "",
+//     tag: "",
+//   });
+
+//   const handleExpand = () => setShowForm(true);
+
+//   const handleAddNote = (e) => {
+//     e.preventDefault();
+//     if (note.title && note.description) {
+//       props.addNote(note.title, note.description, note.tag);
+//       props.showAlert("Note added successfully!", "success");
+//       setNote({ title: "", description: "", tag: "" });
+//       setShowForm(false); // Close after adding
+//     }
+//   };
+
+//   const onChange = (e) => {
+//     setNote({ ...note, [e.target.name]: e.target.value });
+//   };
+
+//   return (
+//     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
+//       {/* Left Section */}
+//       <div className="navbar-brand">CloudNote</div>
+
+//       {/* Center Section: Expanding Form */}
+//       <form className="note-form mx-auto" onSubmit={handleAddNote}>
+//         <div className={`form-group ${showForm ? "expanded" : ""}`}>
+//           {showForm && (
+//             <input
+//               type="text"
+//               className="form-control mb-2"
+//               name="title"
+//               placeholder="Add Title"
+//               value={note.title}
+//               onChange={onChange}
+//               autoComplete="off"
+//             />
+//           )}
+
+//           <input
+//             type="text"
+//             className="form-control mb-2"
+//             name="description"
+//             placeholder="Take a note..."
+//             value={note.description}
+//             onChange={onChange}
+//             autoComplete="off"
+//             onFocus={handleExpand}
+//           />
+
+//           {showForm && (
+//             <>
+//               <input
+//                 type="text"
+//                 className="form-control mb-2"
+//                 name="tag"
+//                 placeholder="Enter Tag"
+//                 value={note.tag}
+//                 onChange={onChange}
+//                 autoComplete="off"
+//               />
+//               <button
+//                 type="submit"
+//                 className="btn btn-primary w-100"
+//               >
+//                 Add Note
+//               </button>
+//             </>
+//           )}
+//         </div>
+//       </form>
+
+//       {/* Right Section */}
+//       <div className="d-flex align-items-center">
+//         <button className="btn btn-outline-secondary mx-2">Login</button>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;

@@ -11,21 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.fa-solid {
-  transition: color 0.3s, transform 0.3s;
-  cursor: pointer;
-}
-
-.fa-trash-can:hover {
-  color: red;
-  transform: scale(1.2);
-}
-.fa-copy:hover {
-  color: blue;
-  transform: scale(1.2);
-}
-.fa-pen-to-square:hover {
-  color: green;
-  transform: scale(1.2);
-}

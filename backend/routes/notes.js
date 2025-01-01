@@ -99,4 +99,31 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
   }
 });
 
+// Route to update note background color
+router.put("/updatebg/:id", fetchuser, async (req, res) => {
+  const { bg_color } = req.body;
+
+  try {
+    // Find the note to be updated and check ownership
+    let note = await Notes.findById(req.params.id);
+    if (!note) return res.status(404).send("Note not found");
+
+    // Check if the note belongs to the authenticated user
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).send("Not authorized to update this note");
+    }
+
+    // Update the note's background color
+    note.bg_color = bg_color; // Assuming 'bg_color' is the field to update
+    await note.save();
+
+    res.json({ note });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
 module.exports = router;

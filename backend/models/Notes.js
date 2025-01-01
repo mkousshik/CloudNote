@@ -22,6 +22,10 @@ const NotesSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  bg_color: {
+    type: String,
+    default: "#FFFFFF"
+  }
 
 });
 
