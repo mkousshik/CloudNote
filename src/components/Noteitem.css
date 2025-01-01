@@ -1,0 +1,62 @@
+.icon-tray {
+    display: flex;
+    justify-content: flex-end;
+}
+i{
+    margin: 0 3px;
+}
+
+.circle{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #202124;
+    opacity: 0.90;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.fa-solid {
+    padding: 7px 0 0 7px;
+}
+
+.fa-solid:hover {
+    opacity: 0.87;
+    background-color: rgba(95, 99, 104, 0.157);
+}
+
+
+.container_bg {
+    /* background-color: #cdd3e5;
+    margin: 5px;
+    padding: 8px 9px 3px; 
+    border-radius: 5px;
+    width: 420px;
+    height: 90px;
+    display: flex;
+    justify-content: center; */
+ /* Lower z-index to stay below the icon-tray */
+
+
+ background-color: white;
+ padding: 5px 10px 5px 10px; 
+ border-radius: 5px;
+ width: 420px;
+ height: 45px; /* Hide initially */
+ display: flex;
+ justify-content: center;
+ position: absolute; /* Position it absolutely */
+ z-index: 1;
+
+  }
+  .circle_bg {
+    margin:2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+  }
+  .circle_bg:hover{
+    cursor: pointer;
+  }
+  
